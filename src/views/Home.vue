@@ -1,11 +1,13 @@
 <template>
   <div class="home">
     <AddTodoForm @todoAdded="addTodo" />
+    <TodoList :list="todos" @markedTodo="updateTodoList" @deletedTodo="updateTodoList" />
   </div>
 </template>
 
 <script>
 import AddTodoForm from '../components/AddTodoForm.vue';
+import TodoList from '../components/TodoList.vue';
 
 export default {
   name: 'Home',
@@ -14,15 +16,21 @@ export default {
   }),
   components: {
     AddTodoForm,
+    TodoList,
   },
   methods: {
     addTodo(e) {
       const newTodo = {
+        id: e.id,
         text: e.text,
         done: false,
       };
       this.todos.push(newTodo);
       localStorage.setItem('todoList', JSON.stringify(this.todos));
+    },
+    updateTodoList(e) {
+      console.log(e);
+      localStorage.setItem('todoList', JSON.stringify(e));
     },
   },
   mounted() {
