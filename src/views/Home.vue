@@ -29,8 +29,8 @@ export default {
       localStorage.setItem('todoList', JSON.stringify(this.todos));
     },
     updateTodoList(e) {
-      console.log(e);
       localStorage.setItem('todoList', JSON.stringify(e));
+      this.todos = e;
     },
   },
   mounted() {

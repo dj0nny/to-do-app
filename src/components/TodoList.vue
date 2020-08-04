@@ -5,7 +5,7 @@
     </div>
     <div class="todo-list" v-else>
       <div class="todo" :class="{ done: todo.done }" v-for="todo in list" :key="todo.id">
-        <span class="delete" @click="deleteTodo(todo)"><span uk-icon="trash"></span></span> <span @click="markAsDone(todo.id)" class="todo-text">{{todo.text}}</span>
+        <span class="delete" @click="deleteTodo(todo.id)"><span uk-icon="trash"></span></span> <span @click="markAsDone(todo.id)" class="todo-text">{{todo.text}}</span>
       </div>
     </div>
   </div>
@@ -30,11 +30,9 @@ export default {
       });
       this.$emit('markedTodo', this.list);
     },
-    deleteTodo(todoItem) {
-      const index = this.list.indexOf(todoItem);
-      this.newList = this.list.splice(index, 1);
-      console.log(this.newList);
-      // this.$emit('deletedTodo', this.newList);
+    deleteTodo(id) {
+      this.newList = this.list.filter((item) => item.id !== id);
+      this.$emit('deletedTodo', this.newList);
     },
   },
 };
