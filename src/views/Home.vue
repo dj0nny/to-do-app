@@ -2,12 +2,14 @@
   <div class="home">
     <AddTodoForm @todoAdded="addTodo" />
     <TodoList :list="todos" @markedTodo="updateTodoList" @deletedTodo="updateTodoList" />
+    <List :todos="todos" />
   </div>
 </template>
 
 <script>
 import AddTodoForm from '../components/AddTodoForm.vue';
 import TodoList from '../components/TodoList.vue';
+import List from '../components/List.vue';
 
 export default {
   name: 'Home',
@@ -17,6 +19,7 @@ export default {
   components: {
     AddTodoForm,
     TodoList,
+    List,
   },
   methods: {
     addTodo(e) {
